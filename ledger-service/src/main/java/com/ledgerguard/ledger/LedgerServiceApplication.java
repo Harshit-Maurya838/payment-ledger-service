@@ -1,4 +1,4 @@
-package com.ledgerguard.ledgerservice;
+package com.ledgerguard.ledger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
