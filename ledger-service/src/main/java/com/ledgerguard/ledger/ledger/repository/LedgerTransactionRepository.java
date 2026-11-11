@@ -1,4 +1,4 @@
-package com.ledgerguard.ledger.ledger.Repository;
+package com.ledgerguard.ledger.ledger.repository;
 
 import com.ledgerguard.ledger.ledger.LedgerTransaction;
 import com.ledgerguard.ledger.ledger.LedgerTransactionType;

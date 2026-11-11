@@ -1,11 +1,11 @@
-package com.ledgerguard.ledger.ledger.Services;
+package com.ledgerguard.ledger.ledger.service;
 
 import com.ledgerguard.ledger.ledger.*;
-import com.ledgerguard.ledger.ledger.Exception.AccountNotFoundException;
-import com.ledgerguard.ledger.ledger.Exception.UnbalancedEntriesException;
-import com.ledgerguard.ledger.ledger.Repository.AccountRepository;
-import com.ledgerguard.ledger.ledger.Repository.LedgerEntryRepository;
-import com.ledgerguard.ledger.ledger.Repository.LedgerTransactionRepository;
+import com.ledgerguard.ledger.ledger.exception.AccountNotFoundException;
+import com.ledgerguard.ledger.ledger.exception.UnbalancedEntriesException;
+import com.ledgerguard.ledger.ledger.repository.AccountRepository;
+import com.ledgerguard.ledger.ledger.repository.LedgerEntryRepository;
+import com.ledgerguard.ledger.ledger.repository.LedgerTransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

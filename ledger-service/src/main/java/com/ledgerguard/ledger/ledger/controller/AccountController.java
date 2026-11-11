@@ -1,7 +1,7 @@
-package com.ledgerguard.ledger.ledger.Controller;
+package com.ledgerguard.ledger.ledger.controller;
 
 import com.ledgerguard.ledger.ledger.AccountBalance;
-import com.ledgerguard.ledger.ledger.Services.LedgerService;
+import com.ledgerguard.ledger.ledger.service.LedgerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

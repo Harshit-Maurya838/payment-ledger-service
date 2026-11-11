@@ -1,4 +1,4 @@
-package com.ledgerguard.ledger.ledger.Exception;
+package com.ledgerguard.ledger.ledger.exception;
 
 import java.util.UUID;
 
