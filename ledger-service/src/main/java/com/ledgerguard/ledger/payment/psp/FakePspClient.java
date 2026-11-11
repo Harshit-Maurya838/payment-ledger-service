@@ -21,4 +21,15 @@ public class FakePspClient implements PspClient {
                 ? PspResult.FAILURE
                 : PspResult.SUCCESS;
     }
+
+    @Override
+    public PspResult refund(UUID paymentId, long amount, String idemKey) {
+        return roll();
+    }
+
+    private PspResult roll() {
+        return ThreadLocalRandom.current().nextDouble() < failureRate
+                ? PspResult.FAILURE
+                : PspResult.SUCCESS;
+    }
 }

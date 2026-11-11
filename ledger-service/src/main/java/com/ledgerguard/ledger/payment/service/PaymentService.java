@@ -27,6 +27,13 @@ public class PaymentService {
     private final LedgerService ledgerService;
     private final AccountRepository accountRepository;
 
+
+    @Transactional(readOnly = true)
+    public Payment get(UUID paymentId) {
+        return paymentRepository.findById(paymentId)
+                .orElseThrow(() -> new PaymentNotFoundException(paymentId));
+    }
+
     @Transactional
     public Payment create(UUID merchantId, long amount, String currency, String idemKey) {
         return paymentRepository.save(new Payment(merchantId, amount, currency, idemKey));
@@ -53,6 +60,15 @@ public class PaymentService {
         ledgerService.post(LedgerTransactionType.CAPTURE, paymentId, List.of(
                 new Entry(accountId("customer_funds"), payment.getAmount()),       // debit
                 new Entry(accountId("merchant_payable"), -payment.getAmount())));  // credit
+        return payment;
+    }
+
+    @Transactional
+    public Payment completeRefund(UUID paymentId) {
+        Payment payment = transition(paymentId, PaymentStatus.REFUNDED);
+        ledgerService.post(LedgerTransactionType.REFUND, paymentId, List.of(
+                new Entry(accountId("customer_funds"), -payment.getAmount()),      // reverse the debit
+                new Entry(accountId("merchant_payable"), payment.getAmount())));   // reverse the credit
         return payment;
     }
 

@@ -6,6 +6,7 @@ spring:
     username: ${DB_USER:ledger}
     password: ${DB_PASSWORD:ledger}
     jpa:
+      open-in-view: false
       hibernate:
         ddl-auto: validate
     threads:

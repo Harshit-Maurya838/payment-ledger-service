@@ -35,4 +35,18 @@ public class PaymentFlowService {
 
         return PaymentResponse.from(finalState);
     }
+
+    // Not @Transactional: REFUND_PENDING commits before the provider is called.
+    public PaymentResponse refund(UUID paymentId, String idemKey) {
+        Payment payment = paymentService.transition(paymentId, PaymentStatus.REFUND_PENDING);
+
+        PspResult result = pspClient.refund(paymentId, payment.getAmount(), idemKey);
+
+        // On provider FAILURE the payment stays REFUND_PENDING and no ledger entries are posted.
+        Payment finalState = (result == PspResult.SUCCESS)
+                ? paymentService.completeRefund(paymentId)
+                : payment;
+
+        return PaymentResponse.from(finalState);
+    }
 }
