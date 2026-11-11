@@ -11,3 +11,6 @@ spring:
     threads:
       virtual:
         enabled: true
+    psp:
+      fake:
+        failure-rate: 0.0
